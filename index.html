@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Saber cuanto falta para cobrar">
+    <meta property="og:description" content="Pagina con fines recreativos">
+    <meta property="og:image" content="nutria.jpg">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <title>Cuanto falta:</title>
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -10,7 +14,21 @@
     <div class="container">
         <h1>Cuanto falta:</h1>
         <div id="countdown" class="countdown"></div>
+        <div class="magia">
+            <div class="btn">
+                <a href="#" id="nutria" onclick="aparecerNutria()">Hazme click si quieres magia</a>
+            </div>
+        </div>
     </div>
+    
     <script src="script.js"></script>
 </body>
 </html>
+
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="cerrarModal()">&times;</span>
+        <img src="nutria.gif" alt="Gif de nutria">
+    </div>
+</div>
+  

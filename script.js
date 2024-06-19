@@ -6,6 +6,19 @@ function getLastBusinessDayOfMonth(year, month) {
     return date;
 }
 
+// Función para mostrar el modal
+function aparecerNutria() {
+    var modal = document.getElementById("myModal");
+    modal.style.display = "block";
+  }
+  
+  // Función para cerrar el modal
+  function cerrarModal() {
+    var modal = document.getElementById("myModal");
+    modal.style.display = "none";
+  }
+  
+
 function updateCountdown() {
     const now = new Date();
     const currentYear = now.getFullYear();

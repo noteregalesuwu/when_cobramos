@@ -6,19 +6,6 @@ function getLastBusinessDayOfMonth(year, month) {
     return date;
 }
 
-// Función para mostrar el modal
-function aparecerNutria() {
-    var modal = document.getElementById("myModal");
-    modal.style.display = "block";
-  }
-  
-  // Función para cerrar el modal
-  function cerrarModal() {
-    var modal = document.getElementById("myModal");
-    modal.style.display = "none";
-  }
-  
-
 function updateCountdown() {
     const now = new Date();
     const currentYear = now.getFullYear();
@@ -40,21 +27,21 @@ function updateCountdown() {
     const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
     document.getElementById("countdown").innerHTML = 
-        `<div>
-            <span>${days}</span>
-            <small>días</small>
+        `<div class="col-md-3 col-3">
+            <span><p>${days}</p></span>
+            <small><p>días</p></small>
         </div>
-        <div>
-            <span>${hours}</span>
-            <small>horas</small>
+        <div class="col-md-3 col-3">
+            <span><p>${hours}</p></span>
+            <small><p>horas</p></small>
         </div>
-        <div>
-            <span>${minutes}</span>
-            <small>minutos</small>
+        <div class="col-md-3 col-3">
+            <span><p>${minutes}</p></span>
+            <small><p>minutos</p></small>
         </div>
-        <div>
-            <span>${seconds}</span>
-            <small>segundos</small>
+        <div class="col-md-3 col-3">
+            <span><p>${seconds}</p></span>
+            <small><p>segundos</p></small>
         </div>`;
 
     setTimeout(updateCountdown, 1000);

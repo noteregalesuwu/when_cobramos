@@ -1,5 +1,24 @@
-body{
+h2{
+    color: #20d3a4!important; /* Fondo verdoso */
+}
+.bg-custom-green{
     background-color: #20d3a4!important; /* Fondo verdoso */
+    background: #20d3a4!important; /* Fondo verdoso */
+}
+.bg-custom-violet{
+    background-color: #9333ea!important; /* Fondo blanco */
+    color: #fff!important; /* Texto gris */
+}
+
+.navbar-nav li a{
+    color: #fff; /* Texto blanco */
+    font-weight: 700!important; /* Negrita */
+    cursor: pointer;
+}
+.navbar-nav li a .nav-link .active{
+    color: #000!important; /* Texto blanco */
+    font-weight: 700!important; /* Negrita */
+    cursor: pointer;
 }
 .btn-custom-one{
     background-color: #9333ea!important; /* Fondo blanco */
@@ -22,6 +41,13 @@ body{
 .countdown div {
     text-align: center;
 }
+#countdown-aguinaldo{
+    color: #9333ea;
+}
+.color-aguinaldo{
+    color: #9333ea!important;
+}
+
 
 .countdown div span {
     font-size:4em;

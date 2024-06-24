@@ -6,7 +6,7 @@ function getLastBusinessDayOfMonth(year, month) {
     return date;
 }
 
-function updateCountdown() {
+function updateCountdownCobro() {
     const now = new Date();
     const currentYear = now.getFullYear();
     const currentMonth = now.getMonth();
@@ -17,7 +17,7 @@ function updateCountdown() {
     const timeRemaining = lastBusinessDay - now;
 
     if (timeRemaining < 0) {
-        document.getElementById("countdown").innerText = "El tiempo ha expirado para este mes.";
+        document.getElementById("countdown-cobro").innerText = "El tiempo ha expirado para este mes.";
         return;
     }
 
@@ -26,7 +26,7 @@ function updateCountdown() {
     const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
-    document.getElementById("countdown").innerHTML = 
+    document.getElementById("countdown-cobro").innerHTML = 
         `<div class="col-md-3 col-3">
             <span><p>${days}</p></span>
             <small><p>días</p></small>
@@ -44,7 +44,85 @@ function updateCountdown() {
             <small><p>segundos</p></small>
         </div>`;
 
-    setTimeout(updateCountdown, 1000);
+    setTimeout(updateCountdownCobro, 1000);
 }
 
-updateCountdown();
+updateCountdownCobro();
+function updateCountdownAguinaldo() {
+    const now = new Date();
+    const currentYear = now.getFullYear();
+    const aguinaldoDate = new Date(currentYear, 11, 15); // December 15th of the current year
+    aguinaldoDate.setHours(18, 0, 0, 0); // 18:00 hours
+
+    const timeRemaining = aguinaldoDate - now;
+
+    if (timeRemaining < 0) {
+        document.getElementById("countdown-aguinaldo").innerText = "El tiempo ha expirado para este año.";
+        return;
+    }
+
+    const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+    document.getElementById("countdown-aguinaldo").innerHTML = 
+        `<div class="col-md-3 col-3">
+            <span><p>${days}</p></span>
+            <small><p>días</p></small>
+        </div>
+        <div class="col-md-3 col-3">
+            <span><p>${hours}</p></span>
+            <small><p>horas</p></small>
+        </div>
+        <div class="col-md-3 col-3">
+            <span><p>${minutes}</p></span>
+            <small><p>minutos</p></small>
+        </div>
+        <div class="col-md-3 col-3">
+            <span><p>${seconds}</p></span>
+            <small><p>segundos</p></small>
+        </div>`;
+
+    setTimeout(updateCountdownAguinaldo, 1000);
+}
+
+updateCountdownAguinaldo();
+
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("aguinaldo").style.display = "none";
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("cobrarRef").classList.add("active");
+});
+
+document.getElementById("aguinaldoRef").addEventListener("click", function() {
+    document.getElementById("cobrar").style.display = "none";
+    document.getElementById("aguinaldo").style.display = "flex";
+    document.getElementById("aguinaldoRef").classList.add("active");
+    document.getElementById("cobrarRef").classList.remove("active");
+
+});
+
+document.getElementById("cobrarRef").addEventListener("click", function() {
+    document.getElementById("aguinaldo").style.display = "none";
+    document.getElementById("cobrar").style.display = "flex";
+    document.getElementById("cobrarRef").classList.add("active");
+    document.getElementById("aguinaldoRef").classList.remove("active");
+});
+
+document.getElementById("btn-aguinaldo").addEventListener("click", function() {
+    document.getElementById("cobrar").style.display = "none";
+    document.getElementById("aguinaldo").style.display = "flex";
+    document.getElementById("aguinaldoRef").classList.add("active");
+    document.getElementById("cobrarRef").classList.remove("active");
+
+});
+
+document.getElementById("btn-sueldo").addEventListener("click", function() {
+    document.getElementById("aguinaldo").style.display = "none";
+    document.getElementById("cobrar").style.display = "flex";
+    document.getElementById("cobrarRef").classList.add("active");
+    document.getElementById("aguinaldoRef").classList.remove("active");
+});

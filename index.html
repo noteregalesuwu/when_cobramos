@@ -9,15 +9,37 @@
     <meta property="og:image" content="nutria.jpg">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <title>Página que te avisa</title>
-    <link rel="stylesheet" href="styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
 </head>
+<nav class="navbar navbar-expand-lg bg-custom-green">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navBar"
+            aria-controls="navBar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navBar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" id="cobrarRef">Cuando cobramos?</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="aguinaldoRef">Para cuando el Aguinaldo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/noteregalesuwu/when_cobramos/issues"
+                        target="_blank">Sugerencias</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
 <body>
     <div class="container-fluid">
-        <div class="row">
-            <h2 class="pt-5 pb-5 text-center">Página que te avisa cuando cuanto falta para ....</h2>
+        <div class="row" id="cobrar">
+            <h2 class="pt-5 pb-5 text-center">Página que te avisa cuando cuanto falta para cobrar</h2>
             <div class="row">
                 <div class="col-md-6 offset-md-3">
                     <img class="w-100 d-block mx-auto rounded" src="nutria.gif" alt="Nutria Bailarina">
@@ -27,65 +49,50 @@
                 <div class="col-12 col-md-6 offset-md-3 col-sm-12 mt-5 mb-5">
                     <div class="shadow bg-body-tertiary rounded ">
                         <div class="row">
-                            <div class="countdown" id="countdown"></div>
+                            <div class="countdown" id="countdown-cobro"></div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="d-grid gap-2 col-md-6 col-12 offset-sm-3 col-sm-12 mx-auto pb-5 mb-5">
-                    <button class="btn btn-primary btn-custom-one" type="button" data-bs-toggle="modal" data-bs-target="#modalNutria">Quiero ser feliz</button>
-                    <button class="btn btn-primary btn-custom-two" type="button" data-bs-toggle="modal" data-bs-target="#modalEncajar">Quiero encajar en la sociedad</button>
+                    <button class="btn btn-primary btn-custom-two" id="btn-aguinaldo">Y cuanto falta para el aguidaldo?</button>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="aguinaldo">
+            <h2 class="pt-5 pb-5 text-center color-aguinaldo">Página que te avisa cuando cuanto falta para el Aguinaldo</h2>
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <img class="w-100 d-block mx-auto rounded" src="nutria.gif" alt="Nutria Bailarina">
                 </div>
             </div>
             <div class="row">
-                <a class="text-center d-flex nutria-sugerencia" href="https://github.com/noteregalesuwu/when_cobramos/issues" target="_blank">
-                    <img class="w-auto mx-auto" src="nutria.png" alt="Nutria Sugerencias">
-                    Surgerir ideas
-                </a>      
+                <div class="col-12 col-md-6 offset-md-3 col-sm-12 mt-5 mb-5">
+                    <div class="shadow bg-body-tertiary rounded">
+                        <div class="row">
+                            <div class="countdown" id="countdown-aguinaldo"></div>
+                        </div>
+                    </div>
+                    <p class="text-center mt-3 color-aguinaldo"><small>Manifiestamos que sea el 15 de Diciembre</small></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="d-grid gap-2 col-md-6 col-12 offset-sm-3 col-sm-12 mx-auto pb-5 mb-5">
+                    <button class="btn btn-primary btn-custom-two" id="btn-sueldo">Y cuanto falta para el sueldo?</button>
+                </div>
             </div>
         </div>
+        <footer class="row">
+            <nav class="fixed-bottom bg-custom-violet text-center">
+                <small class="text-center">Pagina hecha 100% por una nutria con ChatGPT en la mochila</small>
+            </nav>
+            <script src="script.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+                crossorigin="anonymous"></script>
+        </footer>
     </div>
-    <footer>
-        <p class="text-center mt-5 pt-5 mb-5 pb-5">Pagina completamente realizada por Chat GPT</p>
-        <script src="script.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-            crossorigin="anonymous"></script>
-    </footer>
 </body>
-<div class="modal fade" id="modalNutria" tabindex="-1" aria-labelledby="modalNutriaLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="modalNutriaLabel">Nutria feliz</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <img class="img-fluid" src="nutria.gif" alt="Nutria Bailarina">
-            </div>
-            <div class="modal-footer">
-               <p class="text-center">Esta nutria no es responsable por el sitio web</p>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="modalEncajar" tabindex="-1" aria-labelledby="modalEncajarLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="modalEncajarLabel">Nutria feliz</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <img class="img-fluid" src="nutria.gif" alt="Nutria Bailarina">
-                <p class="text-center mt-4">Que pensaste? Esta nutria tambien te hace encajar en la sociedad.</p>
-            </div>
-            <div class="modal-footer">
-               <p class="text-center">Esta nutria no es responsable por el sitio web</p>
-            </div>
-        </div>
-    </div>
-</div>
 
 </html>

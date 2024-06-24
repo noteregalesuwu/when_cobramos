@@ -51,7 +51,7 @@ updateCountdownCobro();
 function updateCountdownAguinaldo() {
     const now = new Date();
     const currentYear = now.getFullYear();
-    const aguinaldoDate = new Date(currentYear, 11, 15); // December 15th of the current year
+    const aguinaldoDate = new Date(currentYear, 11, 16); // December 15th of the current year
     aguinaldoDate.setHours(18, 0, 0, 0); // 18:00 hours
 
     const timeRemaining = aguinaldoDate - now;

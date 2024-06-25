@@ -1,3 +1,5 @@
+document.getElementById("es-hoy").style.display = "none";
+
 function getLastBusinessDayOfMonth(year, month) {
     let date = new Date(year, month + 1, 0); // Último día del mes
     while (date.getDay() === 0 || date.getDay() === 6) { // Mientras sea domingo o sábado
@@ -43,6 +45,14 @@ function updateCountdownCobro() {
             <span><p>${seconds}</p></span>
             <small><p>segundos</p></small>
         </div>`;
+
+    if (days < 1 ) {
+        document.getElementById("es-hoy").style.display = "block";
+        document.getElementById("nutrias-tristes").style.display = "none";
+    } else {
+        document.getElementById("es-hoy").style.display = "none";
+        document.getElementById("nutrias-tristes").style.display = "block";
+    }
 
     setTimeout(updateCountdownCobro, 1000);
 }

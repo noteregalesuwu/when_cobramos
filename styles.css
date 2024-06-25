@@ -6,7 +6,7 @@ h2{
     background: #20d3a4!important; /* Fondo verdoso */
 }
 .bg-custom-violet{
-    background-color: #9333ea!important; /* Fondo blanco */
+    background-color: #c4b5fd!important; /* Fondo blanco */
     color: #fff!important; /* Texto gris */
 }
 
@@ -27,9 +27,9 @@ h2{
 
 }
 .btn-custom-two{
-    background-color: #db2777!important; /* Fondo azul */
+    background-color: #a78bfa!important; /* Fondo azul */
     color: #fff!important; /* Texto blanco */
-    border-color: #be185d!important; /* Borde azul */
+    border-color: #a78bfa!important; /* Borde azul */
 
 }
 .countdown {
@@ -41,9 +41,7 @@ h2{
 .countdown div {
     text-align: center;
 }
-#countdown-aguinaldo{
-    color: #9333ea;
-}
+
 .color-aguinaldo{
     color: #9333ea!important;
 }

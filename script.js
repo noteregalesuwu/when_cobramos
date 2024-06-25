@@ -68,19 +68,19 @@ function updateCountdownAguinaldo() {
 
     document.getElementById("countdown-aguinaldo").innerHTML = 
         `<div class="col-md-3 col-3">
-            <span><p>${days}</p></span>
+            <span class="span-aguinaldo"><p>${days}</p></span>
             <small><p>días</p></small>
         </div>
         <div class="col-md-3 col-3">
-            <span><p>${hours}</p></span>
+            <span class="span-aguinaldo"><p>${hours}</p></span>
             <small><p>horas</p></small>
         </div>
         <div class="col-md-3 col-3">
-            <span><p>${minutes}</p></span>
+            <span class="span-aguinaldo"><p>${minutes}</p></span>
             <small><p>minutos</p></small>
         </div>
         <div class="col-md-3 col-3">
-            <span><p>${seconds}</p></span>
+            <span class="span-aguinaldo"><p>${seconds}</p></span>
             <small><p>segundos</p></small>
         </div>`;
 

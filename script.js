@@ -1,26 +1,44 @@
-document.getElementById("es-hoy").style.display = "none";
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("aguinaldo").style.display = "none";
+    document.getElementById("es-hoy").style.display = "none";
+    document.getElementById("cobrarRef").classList.add("active");
+    document.getElementById("es-hoy").style.display = "none";
+    document.getElementById("informaciones").style.display = "none";
+});
 
-function getLastBusinessDayOfMonth(year, month) {
+// Función para verificar si una fecha es feriado (ignorando el año)
+function esFeriado(fecha, feriados) {
+    const mesDiaStr = `${fecha.getMonth() + 1}-${fecha.getDate()}`;
+    return feriados.some(feriado => feriado.fecha === mesDiaStr);
+}
+
+function getLastBusinessDayOfMonth(year, month, feriados) {
     let date = new Date(year, month + 1, 0); // Último día del mes
-    while (date.getDay() === 0 || date.getDay() === 6) { // Mientras sea domingo o sábado
+    while (date.getDay() === 0 || date.getDay() === 6 || esFeriado(date, feriados)) { // Mientras sea domingo, sábado o feriado
         date.setDate(date.getDate() - 1); // Retrocede un día
     }
     return date;
 }
 
-function updateCountdownCobro() {
+function updateCountdownCobro(feriados) {
     const now = new Date();
-    const currentYear = now.getFullYear();
-    const currentMonth = now.getMonth();
+    let currentYear = now.getFullYear();
+    let currentMonth = now.getMonth();
 
-    const lastBusinessDay = getLastBusinessDayOfMonth(currentYear, currentMonth);
+    let lastBusinessDay = getLastBusinessDayOfMonth(currentYear, currentMonth, feriados);
     lastBusinessDay.setHours(18, 0, 0, 0); // 18:00 horas
 
     const timeRemaining = lastBusinessDay - now;
 
     if (timeRemaining < 0) {
-        document.getElementById("countdown-cobro").innerText = "El tiempo ha expirado para este mes.";
-        return;
+        if (currentMonth === 11) { // Si es diciembre, incrementa el año y ajusta el mes a enero
+            currentYear++;
+            currentMonth = 0;
+        } else {
+            currentMonth++;
+        }
+        lastBusinessDay = getLastBusinessDayOfMonth(currentYear, currentMonth, feriados);
+        lastBusinessDay.setHours(18, 0, 0, 0); // 18:00 horas
     }
 
     const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
@@ -54,22 +72,31 @@ function updateCountdownCobro() {
         document.getElementById("nutrias-tristes").style.display = "block";
     }
 
-    setTimeout(updateCountdownCobro, 1000);
+    setTimeout(() => updateCountdownCobro(feriados), 1000);
 }
 
-updateCountdownCobro();
-function updateCountdownAguinaldo() {
+function getNextBusinessDay(date, feriados) {
+    while (date.getDay() === 0 || date.getDay() === 6 || esFeriado(date, feriados)) { // Mientras sea domingo, sábado o feriado
+        date.setDate(date.getDate() + 1); // Avanza un día
+    }
+    return date;
+}
+
+function updateCountdownAguinaldo(feriados, aguinaldoFecha) {
     const now = new Date();
-    const currentYear = now.getFullYear();
-    const aguinaldoDate = new Date(currentYear, 11, 16); // December 15th of the current year
-    aguinaldoDate.setHours(18, 0, 0, 0); // 18:00 hours
+    let currentYear = now.getFullYear();
+    let [aguinaldoMonth, aguinaldoDay] = aguinaldoFecha.split('-').map(Number);
+    let aguinaldoDate = new Date(currentYear, aguinaldoMonth - 1, aguinaldoDay); // Fecha del aguinaldo del año actual
+
+    if (now > aguinaldoDate) {
+        currentYear++; // Si ya pasó la fecha, ajusta al siguiente año
+        aguinaldoDate = new Date(currentYear, aguinaldoMonth - 1, aguinaldoDay);
+    }
+
+    aguinaldoDate = getNextBusinessDay(aguinaldoDate, feriados);
+    aguinaldoDate.setHours(18, 0, 0, 0); // 18:00 horas
 
     const timeRemaining = aguinaldoDate - now;
-
-    if (timeRemaining < 0) {
-        document.getElementById("countdown-aguinaldo").innerText = "El tiempo ha expirado para este año.";
-        return;
-    }
 
     const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
     const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -94,45 +121,64 @@ function updateCountdownAguinaldo() {
             <small><p>segundos</p></small>
         </div>`;
 
-    setTimeout(updateCountdownAguinaldo, 1000);
+    setTimeout(() => updateCountdownAguinaldo(feriados, aguinaldoFecha), 1000);
 }
 
-updateCountdownAguinaldo();
+// Cargar los feriados y la fecha del aguinaldo desde el archivo JSON
+fetch('feriados.json')
+    .then(response => response.json())
+    .then(data => {
+        const feriados = Array.isArray(data.feriados) ? data.feriados : [];
+        const aguinaldoFecha = data.aguinaldoFecha ;
+        updateCountdownCobro(feriados);
+        updateCountdownAguinaldo(feriados, aguinaldoFecha);
+    })
+    .catch(error => console.error('Error al cargar los datos:', error));
 
-document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("aguinaldo").style.display = "none";
-});
-
-document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("cobrarRef").classList.add("active");
-});
 
 document.getElementById("aguinaldoRef").addEventListener("click", function() {
     document.getElementById("cobrar").style.display = "none";
     document.getElementById("aguinaldo").style.display = "flex";
     document.getElementById("aguinaldoRef").classList.add("active");
     document.getElementById("cobrarRef").classList.remove("active");
-
+    document.getElementById("informaciones").style.display = "none";
+    document.getElementById("informacionesRef").classList.remove("active");
 });
 
 document.getElementById("cobrarRef").addEventListener("click", function() {
     document.getElementById("aguinaldo").style.display = "none";
+    document.getElementById("informaciones").style.display = "none";
     document.getElementById("cobrar").style.display = "flex";
     document.getElementById("cobrarRef").classList.add("active");
     document.getElementById("aguinaldoRef").classList.remove("active");
+    document.getElementById("informacionesRef").classList.remove("active");
+
 });
 
 document.getElementById("btn-aguinaldo").addEventListener("click", function() {
     document.getElementById("cobrar").style.display = "none";
+    document.getElementById("informaciones").style.display = "none";
     document.getElementById("aguinaldo").style.display = "flex";
     document.getElementById("aguinaldoRef").classList.add("active");
     document.getElementById("cobrarRef").classList.remove("active");
+    document.getElementById("informacionesRef").classList.remove("active");
 
 });
 
 document.getElementById("btn-sueldo").addEventListener("click", function() {
     document.getElementById("aguinaldo").style.display = "none";
+    document.getElementById("informaciones").style.display = "none";
     document.getElementById("cobrar").style.display = "flex";
     document.getElementById("cobrarRef").classList.add("active");
+    document.getElementById("aguinaldoRef").classList.remove("active");
+    document.getElementById("informacionesRef").classList.remove("active");
+});
+
+document.getElementById("informacionesRef").addEventListener("click", function() {
+    document.getElementById("cobrar").style.display = "none";
+    document.getElementById("aguinaldo").style.display = "none";
+    document.getElementById("informaciones").style.display = "flex";
+    document.getElementById("informacionesRef").classList.add("active");
+    document.getElementById("cobrarRef").classList.remove("active");
     document.getElementById("aguinaldoRef").classList.remove("active");
 });

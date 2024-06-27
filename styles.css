@@ -57,8 +57,13 @@ h2{
 
 .countdown div small {
     font-size:0.6em;
-    color: #666;
+    color: #000;
 }
+
+.bg-dark div small{
+    color: #fff!important;
+}
+
 
 .nutria-sugerencia{
     display: flex;
@@ -82,3 +87,8 @@ h2{
     font-weight: bold;
     text-decoration: none;
 }
+
+.dark-mode-active{
+    color: #fff;
+}
+

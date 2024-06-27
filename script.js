@@ -4,6 +4,46 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("cobrarRef").classList.add("active");
     document.getElementById("es-hoy").style.display = "none";
     document.getElementById("informaciones").style.display = "none";
+    const darkModeToggle = document.getElementById("darkMode");
+    const currentMode = localStorage.getItem("mode");
+    if(currentMode === "dark"){
+        enableDarkMode();
+    }
+
+    darkModeToggle.addEventListener("click", function(){
+        if(this.textContent === "Cambiar a Modo Normal"){
+            disableDarkMode();
+            localStorage.setItem("mode","light");
+            console.log("Estoy en modo oscuro");
+        }else{
+            enableDarkMode();
+            localStorage.setItem("mode","dark");
+            console.log("Estoy en modo dark");
+        }
+    });
+
+    //Dark Mode Truchazo
+    function enableDarkMode(){
+        document.getElementById("body-theme").classList.remove("bg-light");
+        document.getElementById("body-theme").classList.add("bg-dark");
+        document.getElementById("body-theme").classList.add("dark-mode-active");
+        document.getElementById("darkMode").textContent="Cambiar a Modo Normal";
+        document.getElementById("countdown-aguinaldo").classList.add("bg-dark");
+        document.getElementById("countdown-cobro").classList.add("bg-dark");
+
+    }
+
+    function disableDarkMode(){
+        document.getElementById("body-theme").classList.remove("bg-dark");
+        document.getElementById("body-theme").classList.add("bg-light");
+        document.getElementById("body-theme").classList.remove("dark-mode-active");
+        document.getElementById("darkMode").textContent="Cambiar a Modo Oscuro";
+        document.getElementById("countdown-cobro").classList.remove("bg-dark");
+        document.getElementById("countdown-cobro").classList.remove("bg-dark");
+
+
+
+    }
 });
 
 // Función para verificar si una fecha es feriado (ignorando el año)
@@ -85,7 +125,7 @@ function getNextBusinessDay(date, feriados) {
 function updateCountdownAguinaldo(feriados, aguinaldoFecha) {
     const now = new Date();
     let currentYear = now.getFullYear();
-    let [aguinaldoMonth, aguinaldoDay] = aguinaldoFecha.split('-').map(Number);
+    let [aguinaldoMonth, aguinaldoDay] = aguinaldoFecha.split("-").map(Number);
     let aguinaldoDate = new Date(currentYear, aguinaldoMonth - 1, aguinaldoDay); // Fecha del aguinaldo del año actual
 
     if (now > aguinaldoDate) {
@@ -125,7 +165,7 @@ function updateCountdownAguinaldo(feriados, aguinaldoFecha) {
 }
 
 // Cargar los feriados y la fecha del aguinaldo desde el archivo JSON
-fetch('feriados.json')
+fetch("feriados.json")
     .then(response => response.json())
     .then(data => {
         const feriados = Array.isArray(data.feriados) ? data.feriados : [];
@@ -133,7 +173,7 @@ fetch('feriados.json')
         updateCountdownCobro(feriados);
         updateCountdownAguinaldo(feriados, aguinaldoFecha);
     })
-    .catch(error => console.error('Error al cargar los datos:', error));
+    .catch(error => console.error("Error al cargar los datos:", error));
 
 
 document.getElementById("aguinaldoRef").addEventListener("click", function() {

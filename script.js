@@ -62,7 +62,7 @@ function updateCountdownCobro(feriados) {
     let currentMonth = now.getMonth();
 
     let lastBusinessDay = getLastBusinessDayOfMonth(currentYear, currentMonth, feriados);
-    lastBusinessDay.setHours(18, 0, 0, 0); // 18:00 horas
+    lastBusinessDay.setHours(23, 59, 59, 59); 
 
     const timeRemaining = lastBusinessDay - now;
 
@@ -74,7 +74,7 @@ function updateCountdownCobro(feriados) {
             currentMonth++;
         }
         lastBusinessDay = getLastBusinessDayOfMonth(currentYear, currentMonth, feriados);
-        lastBusinessDay.setHours(18, 0, 0, 0); // 18:00 horas
+        lastBusinessDay.setHours(23, 59, 59, 59); 
     }
 
     const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
@@ -103,6 +103,10 @@ function updateCountdownCobro(feriados) {
     if (days < 1 ) {
         document.getElementById("es-hoy").style.display = "block";
         document.getElementById("nutrias-tristes").style.display = "none";
+    }else if(days === 1 && hours > 1 ){
+        document.getElementById("es-hoy").style.display = "block";
+        document.getElementById("texto-feliz").textContent="Mañana";
+        document.getElementById("nutrias-tristes").style.display = "none";
     } else {
         document.getElementById("es-hoy").style.display = "none";
         document.getElementById("nutrias-tristes").style.display = "block";
@@ -130,7 +134,7 @@ function updateCountdownAguinaldo(feriados, aguinaldoFecha) {
     }
 
     aguinaldoDate = getNextBusinessDay(aguinaldoDate, feriados);
-    aguinaldoDate.setHours(18, 0, 0, 0); // 18:00 horas
+    aguinaldoDate.setHours(23, 59, 59, 59);
 
     const timeRemaining = aguinaldoDate - now;
 

@@ -8,17 +8,17 @@ document.addEventListener("DOMContentLoaded", function() {
     const currentMode = localStorage.getItem("mode");
     if(currentMode === "dark"){
         enableDarkMode();
+    }else{
+        disableDarkMode();
     }
 
     darkModeToggle.addEventListener("click", function(){
         if(this.textContent === "Cambiar a Modo Normal"){
             disableDarkMode();
             localStorage.setItem("mode","light");
-            console.log("Estoy en modo oscuro");
         }else{
             enableDarkMode();
             localStorage.setItem("mode","dark");
-            console.log("Estoy en modo dark");
         }
     });
 
@@ -30,7 +30,6 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("darkMode").textContent="Cambiar a Modo Normal";
         document.getElementById("countdown-aguinaldo").classList.add("bg-dark");
         document.getElementById("countdown-cobro").classList.add("bg-dark");
-
     }
 
     function disableDarkMode(){
@@ -40,9 +39,6 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("darkMode").textContent="Cambiar a Modo Oscuro";
         document.getElementById("countdown-aguinaldo").classList.remove("bg-dark");
         document.getElementById("countdown-cobro").classList.remove("bg-dark");
-
-
-
     }
 });
 

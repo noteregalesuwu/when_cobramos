@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("body-theme").classList.add("bg-light");
         document.getElementById("body-theme").classList.remove("dark-mode-active");
         document.getElementById("darkMode").textContent="Cambiar a Modo Oscuro";
-        document.getElementById("countdown-cobro").classList.remove("bg-dark");
+        document.getElementById("countdown-aguinaldo").classList.remove("bg-dark");
         document.getElementById("countdown-cobro").classList.remove("bg-dark");
 
 

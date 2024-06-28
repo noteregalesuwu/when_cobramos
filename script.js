@@ -67,7 +67,7 @@ function updateCountdownCobro(feriados) {
     let lastBusinessDay = getLastBusinessDayOfMonth(currentYear, currentMonth, feriados);
     lastBusinessDay.setHours(23, 59, 59, 59); 
 
-    const timeRemaining = lastBusinessDay - now;
+    let timeRemaining = lastBusinessDay - now;
 
     if (timeRemaining < 0) {
         if (currentMonth === 11) { // Si es diciembre, incrementa el año y ajusta el mes a enero
@@ -78,6 +78,7 @@ function updateCountdownCobro(feriados) {
         }
         lastBusinessDay = getLastBusinessDayOfMonth(currentYear, currentMonth, feriados);
         lastBusinessDay.setHours(23, 59, 59, 59); 
+        timeRemaining = lastBusinessDay - now; // Recalcula el tiempo restante después de cambiar el mes
     }
 
     const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
@@ -129,6 +130,7 @@ function getNextBusinessDay(date, feriados) {
     }
     return date;
 }
+
 
 function updateCountdownAguinaldo(feriados, aguinaldoFecha) {
     const now = new Date();

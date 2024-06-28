@@ -1,10 +1,12 @@
+const darkModeToggle = document.getElementById("darkMode");
+const normalModeToggle = document.getElementById("normalMode");
+
 document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("aguinaldo").style.display = "none";
     document.getElementById("es-hoy").style.display = "none";
     document.getElementById("cobrarRef").classList.add("active");
     document.getElementById("es-hoy").style.display = "none";
     document.getElementById("informaciones").style.display = "none";
-    const darkModeToggle = document.getElementById("darkMode");
     const currentMode = localStorage.getItem("mode");
     if(currentMode === "dark"){
         enableDarkMode();
@@ -13,13 +15,12 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     darkModeToggle.addEventListener("click", function(){
-        if(this.textContent === "Cambiar a Modo Normal"){
-            disableDarkMode();
-            localStorage.setItem("mode","light");
-        }else{
-            enableDarkMode();
-            localStorage.setItem("mode","dark");
-        }
+        enableDarkMode();
+        localStorage.setItem("mode","dark");
+    });
+    normalModeToggle.addEventListener("click", function(){
+        disableDarkMode();
+        localStorage.setItem("mode","light");
     });
 
     //Dark Mode Truchazo
@@ -27,18 +28,20 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("body-theme").classList.remove("bg-light");
         document.getElementById("body-theme").classList.add("bg-dark");
         document.getElementById("body-theme").classList.add("dark-mode-active");
-        document.getElementById("darkMode").textContent="Cambiar a Modo Normal";
         document.getElementById("countdown-aguinaldo").classList.add("bg-dark");
         document.getElementById("countdown-cobro").classList.add("bg-dark");
+        document.getElementById("toggleTheme").classList.remove("bi-brightness-high-fill");
+        document.getElementById("toggleTheme").classList.add("bi-moon-stars-fill");
     }
 
     function disableDarkMode(){
         document.getElementById("body-theme").classList.remove("bg-dark");
         document.getElementById("body-theme").classList.add("bg-light");
         document.getElementById("body-theme").classList.remove("dark-mode-active");
-        document.getElementById("darkMode").textContent="Cambiar a Modo Oscuro";
         document.getElementById("countdown-aguinaldo").classList.remove("bg-dark");
         document.getElementById("countdown-cobro").classList.remove("bg-dark");
+        document.getElementById("toggleTheme").classList.remove("bi-moon-stars-fill");
+        document.getElementById("toggleTheme").classList.add("bi-brightness-high-fill");
     }
 });
 

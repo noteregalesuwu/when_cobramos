@@ -103,6 +103,11 @@ function updateCountdownCobro(feriados) {
     if (days < 1 ) {
         document.getElementById("es-hoy").style.display = "block";
         document.getElementById("nutrias-tristes").style.display = "none";
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 },
+        });
     }else if(days === 1 && hours > 1 ){
         document.getElementById("es-hoy").style.display = "block";
         document.getElementById("texto-feliz").textContent="Mañana";

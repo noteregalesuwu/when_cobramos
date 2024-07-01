@@ -18,19 +18,14 @@ function displayRandomImage() {
         const imgElement = document.getElementById("memeJulio");
         const random = "julio/julio.jpg";
         imgElement.src = random;
-        console.log("hola");
     } else if (mes === 6) {
         let randomImage = imagenesMemes[randomIndex]
         const imgElement = document.getElementById("memeJulio");
         const random = randomImage;
         imgElement.src = random;
-        console.log("chao");
-
     }else {
-        console.log("que");
         return 1;
     }
-    
 }
 
 document.addEventListener("DOMContentLoaded", function() {

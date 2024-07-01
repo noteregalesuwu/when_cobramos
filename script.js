@@ -1,6 +1,38 @@
 const darkModeToggle = document.getElementById("darkMode");
 const normalModeToggle = document.getElementById("normalMode");
 
+const imagenesMemes = [
+    "julio/julio-1.jpg",
+    "julio/julio-2.jpg",
+    "julio/julio-3.jpg",
+    "julio/julio-4.jpg",
+    "julio/julio-5.jpg"
+];
+
+function displayRandomImage() {
+    const randomIndex = Math.floor(Math.random() * imagenesMemes.length);
+    var memeDate = new Date();
+    var mes = memeDate.getMonth();
+    var dia = memeDate.getDate()
+    if (mes === 5 && dia === 30){
+        const imgElement = document.getElementById("memeJulio");
+        const random = "julio/julio.jpg";
+        imgElement.src = random;
+        console.log("hola");
+    } else if (mes === 6) {
+        let randomImage = imagenesMemes[randomIndex]
+        const imgElement = document.getElementById("memeJulio");
+        const random = randomImage;
+        imgElement.src = random;
+        console.log("chao");
+
+    }else {
+        console.log("que");
+        return 1;
+    }
+    
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("aguinaldo").style.display = "none";
     document.getElementById("es-hoy").style.display = "none";
@@ -8,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("es-hoy").style.display = "none";
     document.getElementById("informaciones").style.display = "none";
     const currentMode = localStorage.getItem("mode");
+
     if(currentMode === "dark"){
         enableDarkMode();
     }else{
@@ -43,6 +76,9 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("toggleTheme").classList.remove("bi-moon-stars-fill");
         document.getElementById("toggleTheme").classList.add("bi-brightness-high-fill");
     }
+    document.getElementById("btnModalMeme").click();
+    displayRandomImage();
+
 });
 
 // Función para verificar si una fecha es feriado (ignorando el año)
@@ -232,3 +268,4 @@ document.getElementById("informacionesRef").addEventListener("click", function()
     document.getElementById("cobrarRef").classList.remove("active");
     document.getElementById("aguinaldoRef").classList.remove("active");
 });
+

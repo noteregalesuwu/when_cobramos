@@ -14,11 +14,7 @@ function displayRandomImage() {
     var memeDate = new Date();
     var mes = memeDate.getMonth();
     var dia = memeDate.getDate()
-    if (mes === 5 && dia === 30){
-        const imgElement = document.getElementById("memeJulio");
-        const random = "julio/julio.jpg";
-        imgElement.src = random;
-    } else if (mes === 6) {
+    if (mes === 6) {
         let randomImage = imagenesMemes[randomIndex]
         const imgElement = document.getElementById("memeJulio");
         const random = randomImage;

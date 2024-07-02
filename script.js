@@ -1,44 +1,34 @@
+const cobrarRefElement = document.getElementById("cobrarRef");
 const darkModeToggle = document.getElementById("darkMode");
+const divCobrar = document.getElementById("cobrar");
+const divInfo = document.getElementById("informaciones");
 const normalModeToggle = document.getElementById("normalMode");
-
-const imagenesMemes = [
-    "julio/julio-1.jpg",
-    "julio/julio-2.jpg",
-    "julio/julio-3.jpg",
-    "julio/julio-4.jpg",
-    "julio/julio-5.jpg"
-];
-
-function displayRandomImage() {
-    const randomIndex = Math.floor(Math.random() * imagenesMemes.length);
-    var memeDate = new Date();
-    var mes = memeDate.getMonth();
-    var dia = memeDate.getDate()
-    if (mes === 5 && dia === 30){
-        const imgElement = document.getElementById("memeJulio");
-        const random = "julio/julio.jpg";
-        imgElement.src = random;
-        console.log("hola");
-    } else if (mes === 6) {
-        let randomImage = imagenesMemes[randomIndex]
-        const imgElement = document.getElementById("memeJulio");
-        const random = randomImage;
-        imgElement.src = random;
-        console.log("chao");
-
-    }else {
-        console.log("que");
-        return 1;
-    }
-    
-}
+const countdownAguinaldo = document.getElementById("countdown-aguinaldo");
+const countdownCobro = document.getElementById("countdown-cobro");
+const esHoyDiv = document.getElementById("es-hoy");
+const toggleThemeElement = document.getElementById("toggleTheme");
+const bodyTheme = document.getElementById("body-theme");
+const divAguinaldo = document.getElementById("aguinaldo");
+const btnVerMemes = document.getElementById("verMemes");
+const divMemes = document.getElementById("memes");
+const memeJulioElement = document.getElementById("memeJulio");
+const textoFeliz = document.getElementById("texto-feliz");
+const infoRefElement = document.getElementById("informacionesRef");
+const aguinaldoRefElement = document.getElementById("aguinaldoRef");
+const divNutriasTristes = document.getElementById("nutrias-tristes");
+const memesRef = document.getElementById("memesRef");
+const btnVolverInicio = document.getElementById("volverInicio");
 
 document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("aguinaldo").style.display = "none";
-    document.getElementById("es-hoy").style.display = "none";
-    document.getElementById("cobrarRef").classList.add("active");
-    document.getElementById("es-hoy").style.display = "none";
-    document.getElementById("informaciones").style.display = "none";
+    divAguinaldo.style.display = "none";
+    esHoyDiv.style.display = "none";
+    cobrarRefElement.classList.add("active");
+    esHoyDiv.style.display = "none";
+    divInfo.style.display = "none";
+    divMemes.style.display = "none";
+    memesRef.classList.remove("active");
+        divMemes.style.display = "none";
+
     const currentMode = localStorage.getItem("mode");
 
     if(currentMode === "dark"){
@@ -58,27 +48,24 @@ document.addEventListener("DOMContentLoaded", function() {
 
     //Dark Mode Truchazo
     function enableDarkMode(){
-        document.getElementById("body-theme").classList.remove("bg-light");
-        document.getElementById("body-theme").classList.add("bg-dark");
-        document.getElementById("body-theme").classList.add("dark-mode-active");
-        document.getElementById("countdown-aguinaldo").classList.add("bg-dark");
-        document.getElementById("countdown-cobro").classList.add("bg-dark");
-        document.getElementById("toggleTheme").classList.remove("bi-brightness-high-fill");
-        document.getElementById("toggleTheme").classList.add("bi-moon-stars-fill");
+        bodyTheme.classList.remove("bg-light");
+        bodyTheme.classList.add("bg-dark");
+        bodyTheme.classList.add("dark-mode-active");
+        countdownAguinaldo.classList.add("bg-dark");
+        countdownCobro.classList.add("bg-dark");
+        toggleThemeElement.classList.remove("bi-brightness-high-fill");
+        toggleThemeElement.classList.add("bi-moon-stars-fill");
     }
 
     function disableDarkMode(){
-        document.getElementById("body-theme").classList.remove("bg-dark");
-        document.getElementById("body-theme").classList.add("bg-light");
-        document.getElementById("body-theme").classList.remove("dark-mode-active");
-        document.getElementById("countdown-aguinaldo").classList.remove("bg-dark");
-        document.getElementById("countdown-cobro").classList.remove("bg-dark");
-        document.getElementById("toggleTheme").classList.remove("bi-moon-stars-fill");
-        document.getElementById("toggleTheme").classList.add("bi-brightness-high-fill");
+        bodyTheme.classList.remove("bg-dark");
+        bodyTheme.classList.add("bg-light");
+        bodyTheme.classList.remove("dark-mode-active");
+        countdownAguinaldo.classList.remove("bg-dark");
+        countdownCobro.classList.remove("bg-dark");
+        toggleThemeElement.classList.remove("bi-moon-stars-fill");
+        toggleThemeElement.classList.add("bi-brightness-high-fill");
     }
-    document.getElementById("btnModalMeme").click();
-    displayRandomImage();
-
 });
 
 // Función para verificar si una fecha es feriado (ignorando el año)
@@ -122,7 +109,7 @@ function updateCountdownCobro(feriados) {
     const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
-    document.getElementById("countdown-cobro").innerHTML = 
+    countdownCobro.innerHTML = 
         `<div class="col-md-3 col-3">
             <span><p>${days}</p></span>
             <small><p>días</p></small>
@@ -141,20 +128,20 @@ function updateCountdownCobro(feriados) {
         </div>`;
 
     if (days < 1 ) {
-        document.getElementById("es-hoy").style.display = "block";
-        document.getElementById("nutrias-tristes").style.display = "none";
+        esHoyDiv.style.display = "block";
+        divNutriasTristes.style.display = "none";
         confetti({
             particleCount: 100,
             spread: 70,
             origin: { y: 0.6 },
         });
     }else if(days === 1 && hours > 1 ){
-        document.getElementById("es-hoy").style.display = "block";
-        document.getElementById("texto-feliz").textContent="Mañana";
-        document.getElementById("nutrias-tristes").style.display = "none";
+        esHoyDiv.style.display = "block";
+        textoFeliz.textContent="Mañana";
+        divNutriasTristes.style.display = "none";
     } else {
-        document.getElementById("es-hoy").style.display = "none";
-        document.getElementById("nutrias-tristes").style.display = "block";
+        esHoyDiv.style.display = "none";
+        divNutriasTristes.style.display = "block";
     }
 
     setTimeout(() => updateCountdownCobro(feriados), 1000);
@@ -189,7 +176,7 @@ function updateCountdownAguinaldo(feriados, aguinaldoFecha) {
     const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
-    document.getElementById("countdown-aguinaldo").innerHTML = 
+    countdownAguinaldo.innerHTML = 
         `<div class="col-md-3 col-3">
             <span class="span-aguinaldo"><p>${days}</p></span>
             <small><p>días</p></small>
@@ -222,50 +209,116 @@ fetch("feriados.json")
     .catch(error => console.error("Error al cargar los datos:", error));
 
 
-document.getElementById("aguinaldoRef").addEventListener("click", function() {
-    document.getElementById("cobrar").style.display = "none";
-    document.getElementById("aguinaldo").style.display = "flex";
-    document.getElementById("aguinaldoRef").classList.add("active");
-    document.getElementById("cobrarRef").classList.remove("active");
-    document.getElementById("informaciones").style.display = "none";
-    document.getElementById("informacionesRef").classList.remove("active");
+aguinaldoRefElement.addEventListener("click", function() {
+    divCobrar.style.display = "none";
+    divAguinaldo.style.display = "flex";
+    aguinaldoRefElement.classList.add("active");
+    cobrarRefElement.classList.remove("active");
+    divInfo.style.display = "none";
+    infoRefElement.classList.remove("active");
+    memesRef.classList.remove("active");
+    divMemes.style.display = "none";
 });
 
-document.getElementById("cobrarRef").addEventListener("click", function() {
-    document.getElementById("aguinaldo").style.display = "none";
-    document.getElementById("informaciones").style.display = "none";
-    document.getElementById("cobrar").style.display = "flex";
-    document.getElementById("cobrarRef").classList.add("active");
-    document.getElementById("aguinaldoRef").classList.remove("active");
-    document.getElementById("informacionesRef").classList.remove("active");
-
+cobrarRefElement.addEventListener("click", function() {
+    divAguinaldo.style.display = "none";
+    divInfo.style.display = "none";
+    divCobrar.style.display = "flex";
+    cobrarRefElement.classList.add("active");
+    aguinaldoRefElement.classList.remove("active");
+    infoRefElement.classList.remove("active");
+    memesRef.classList.remove("active");
+    divMemes.style.display = "none";
 });
 
 document.getElementById("btn-aguinaldo").addEventListener("click", function() {
-    document.getElementById("cobrar").style.display = "none";
-    document.getElementById("informaciones").style.display = "none";
-    document.getElementById("aguinaldo").style.display = "flex";
-    document.getElementById("aguinaldoRef").classList.add("active");
-    document.getElementById("cobrarRef").classList.remove("active");
-    document.getElementById("informacionesRef").classList.remove("active");
-
+    divCobrar.style.display = "none";
+    divInfo.style.display = "none";
+    divAguinaldo.style.display = "flex";
+    aguinaldoRefElement.classList.add("active");
+    cobrarRefElement.classList.remove("active");
+    infoRefElement.classList.remove("active");
+    memesRef.classList.remove("active");
+    divMemes.style.display = "none";
 });
 
 document.getElementById("btn-sueldo").addEventListener("click", function() {
-    document.getElementById("aguinaldo").style.display = "none";
-    document.getElementById("informaciones").style.display = "none";
-    document.getElementById("cobrar").style.display = "flex";
-    document.getElementById("cobrarRef").classList.add("active");
-    document.getElementById("aguinaldoRef").classList.remove("active");
-    document.getElementById("informacionesRef").classList.remove("active");
+    divAguinaldo.style.display = "none";
+    divInfo.style.display = "none";
+    divCobrar.style.display = "flex";
+    cobrarRefElement.classList.add("active");
+    aguinaldoRefElement.classList.remove("active");
+    infoRefElement.classList.remove("active");
+    memesRef.classList.remove("active");
+    divMemes.style.display = "none";
 });
 
-document.getElementById("informacionesRef").addEventListener("click", function() {
-    document.getElementById("cobrar").style.display = "none";
-    document.getElementById("aguinaldo").style.display = "none";
-    document.getElementById("informaciones").style.display = "flex";
-    document.getElementById("informacionesRef").classList.add("active");
-    document.getElementById("cobrarRef").classList.remove("active");
-    document.getElementById("aguinaldoRef").classList.remove("active");
+infoRefElement.addEventListener("click", function() {
+    divCobrar.style.display = "none";
+    divAguinaldo.style.display = "none";
+    divInfo.style.display = "flex";
+    infoRefElement.classList.add("active");
+    cobrarRefElement.classList.remove("active");
+    aguinaldoRefElement.classList.remove("active");
+    memesRef.classList.remove("active");
+    divMemes.style.display = "none";
 });
 
+btnVerMemes.addEventListener("click",function(){
+    divMemes.style.display = "block";
+    divCobrar.style.display = "none";
+    divCobrar.style.display = "none";
+    divAguinaldo.style.display = "none";
+    divInfo.style.display = "none";
+    memesRef.classList.add("active");
+    aguinaldoRefElement.classList.remove("active");
+    cobrarRefElement.classList.remove("active");
+    infoRefElement.classList.remove("active");
+});
+
+memesRef.addEventListener("click",function(){
+    divMemes.style.display = "block";
+    divCobrar.style.display = "none";
+    divAguinaldo.style.display = "none";
+    divInfo.style.display = "none";
+    memesRef.classList.add("active");
+    aguinaldoRefElement.classList.remove("active");
+    cobrarRefElement.classList.remove("active");
+    infoRefElement.classList.remove("active");
+});
+
+
+btnVolverInicio.addEventListener("click",function(){
+    divAguinaldo.style.display = "none";
+    divInfo.style.display = "none";
+    divCobrar.style.display = "flex";
+    cobrarRefElement.classList.add("active");
+    aguinaldoRefElement.classList.remove("active");
+    infoRefElement.classList.remove("active");
+    memesRef.classList.remove("active");
+    divMemes.style.display = "none";
+});
+
+async function loadMemes() {
+    try {
+        const response = await fetch('memes.json');
+        const data = await response.json();
+        const rowMemes = document.getElementById('row-memes');
+        data.memes.forEach(src => {
+            const colDiv = document.createElement('div');
+            colDiv.className = 'col-4 col-md-3';
+            const a = document.createElement('a');
+            a.href = src;
+            a.setAttribute('data-fancybox', 'gallery');
+            const img = document.createElement('img');
+            img.src = src;
+            img.className = 'img-fluid rounded mx-auto d-block';
+            a.appendChild(img);
+            colDiv.appendChild(a);
+            rowMemes.appendChild(colDiv);
+        });
+    } catch (error) {
+        console.error('Error cargando el JSON:', error);
+    }
+};
+document.addEventListener('DOMContentLoaded', loadMemes);

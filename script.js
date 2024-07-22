@@ -19,6 +19,9 @@ const divNutriasTristes = document.getElementById("nutrias-tristes");
 const memesRef = document.getElementById("memesRef");
 const btnVolverInicio = document.getElementById("volverInicio");
 const themeSwitcher = document.getElementById("theme-switcher");
+const iconoSol = document.querySelector('.bi-brightness-high-fill');
+const iconoLuna = document.querySelector('.bi-moon-stars-fill');
+
 
 document.addEventListener("DOMContentLoaded", function() {
     divAguinaldo.style.display = "none";
@@ -33,19 +36,35 @@ document.addEventListener("DOMContentLoaded", function() {
     const currentMode = localStorage.getItem("mode");
 
     if(currentMode === "dark"){
+        iconoSol.classList.remove('icono-oscuro');
+        iconoSol.classList.add('icono-claro');
+        iconoLuna.classList.remove('icono-claro');
+        iconoLuna.classList.add('icono-oscuro');
         enableDarkMode();
         themeSwitcher.checked = true;
     }else{
-        themeSwitcher.checked = false;
+        iconoSol.classList.remove('icono-claro');
+        iconoSol.classList.add('icono-oscuro');
+        iconoLuna.classList.remove('icono-oscuro');
+        iconoLuna.classList.add('icono-claro');
         disableDarkMode();
+        themeSwitcher.checked = false;
     }
 
     themeSwitcher.addEventListener("change", function(){
         if(themeSwitcher.checked){
+            iconoSol.classList.remove('icono-oscuro');
+            iconoSol.classList.add('icono-claro');
+            iconoLuna.classList.remove('icono-claro');
+            iconoLuna.classList.add('icono-oscuro');
             enableDarkMode();
             localStorage.setItem("mode","dark");
         }
         else{
+            iconoSol.classList.remove('icono-claro');
+            iconoSol.classList.add('icono-oscuro');
+            iconoLuna.classList.remove('icono-oscuro');
+            iconoLuna.classList.add('icono-claro');
             disableDarkMode();
             localStorage.setItem("mode","light");
         }

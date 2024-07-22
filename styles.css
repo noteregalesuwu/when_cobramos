@@ -96,3 +96,12 @@ h2{
 #row-memes .col-4 {
     margin-bottom: 10px;
 }
+
+.icono-claro {
+    color: white;
+  }
+  
+  .icono-oscuro {
+    color: black;
+  }
+  

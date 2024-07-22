@@ -18,6 +18,10 @@ const aguinaldoRefElement = document.getElementById("aguinaldoRef");
 const divNutriasTristes = document.getElementById("nutrias-tristes");
 const memesRef = document.getElementById("memesRef");
 const btnVolverInicio = document.getElementById("volverInicio");
+const themeSwitcher = document.getElementById("theme-switcher");
+const iconoSol = document.querySelector('.bi-brightness-high-fill');
+const iconoLuna = document.querySelector('.bi-moon-stars-fill');
+
 
 document.addEventListener("DOMContentLoaded", function() {
     divAguinaldo.style.display = "none";
@@ -32,18 +36,38 @@ document.addEventListener("DOMContentLoaded", function() {
     const currentMode = localStorage.getItem("mode");
 
     if(currentMode === "dark"){
+        iconoSol.classList.remove('icono-oscuro');
+        iconoSol.classList.add('icono-claro');
+        iconoLuna.classList.remove('icono-claro');
+        iconoLuna.classList.add('icono-oscuro');
         enableDarkMode();
+        themeSwitcher.checked = true;
     }else{
+        iconoSol.classList.remove('icono-claro');
+        iconoSol.classList.add('icono-oscuro');
+        iconoLuna.classList.remove('icono-oscuro');
+        iconoLuna.classList.add('icono-claro');
         disableDarkMode();
+        themeSwitcher.checked = false;
     }
 
-    darkModeToggle.addEventListener("click", function(){
-        enableDarkMode();
-        localStorage.setItem("mode","dark");
-    });
-    normalModeToggle.addEventListener("click", function(){
-        disableDarkMode();
-        localStorage.setItem("mode","light");
+    themeSwitcher.addEventListener("change", function(){
+        if(themeSwitcher.checked){
+            iconoSol.classList.remove('icono-oscuro');
+            iconoSol.classList.add('icono-claro');
+            iconoLuna.classList.remove('icono-claro');
+            iconoLuna.classList.add('icono-oscuro');
+            enableDarkMode();
+            localStorage.setItem("mode","dark");
+        }
+        else{
+            iconoSol.classList.remove('icono-claro');
+            iconoSol.classList.add('icono-oscuro');
+            iconoLuna.classList.remove('icono-oscuro');
+            iconoLuna.classList.add('icono-claro');
+            disableDarkMode();
+            localStorage.setItem("mode","light");
+        }
     });
 
     //Dark Mode Truchazo
@@ -53,8 +77,6 @@ document.addEventListener("DOMContentLoaded", function() {
         bodyTheme.classList.add("dark-mode-active");
         countdownAguinaldo.classList.add("bg-dark");
         countdownCobro.classList.add("bg-dark");
-        toggleThemeElement.classList.remove("bi-brightness-high-fill");
-        toggleThemeElement.classList.add("bi-moon-stars-fill");
     }
 
     function disableDarkMode(){
@@ -63,8 +85,6 @@ document.addEventListener("DOMContentLoaded", function() {
         bodyTheme.classList.remove("dark-mode-active");
         countdownAguinaldo.classList.remove("bg-dark");
         countdownCobro.classList.remove("bg-dark");
-        toggleThemeElement.classList.remove("bi-moon-stars-fill");
-        toggleThemeElement.classList.add("bi-brightness-high-fill");
     }
 });
 

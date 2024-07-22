@@ -18,6 +18,7 @@ const aguinaldoRefElement = document.getElementById("aguinaldoRef");
 const divNutriasTristes = document.getElementById("nutrias-tristes");
 const memesRef = document.getElementById("memesRef");
 const btnVolverInicio = document.getElementById("volverInicio");
+const themeSwitcher = document.getElementById("theme-switcher");
 
 document.addEventListener("DOMContentLoaded", function() {
     divAguinaldo.style.display = "none";
@@ -33,17 +34,21 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if(currentMode === "dark"){
         enableDarkMode();
+        themeSwitcher.checked = true;
     }else{
+        themeSwitcher.checked = false;
         disableDarkMode();
     }
 
-    darkModeToggle.addEventListener("click", function(){
-        enableDarkMode();
-        localStorage.setItem("mode","dark");
-    });
-    normalModeToggle.addEventListener("click", function(){
-        disableDarkMode();
-        localStorage.setItem("mode","light");
+    themeSwitcher.addEventListener("change", function(){
+        if(themeSwitcher.checked){
+            enableDarkMode();
+            localStorage.setItem("mode","dark");
+        }
+        else{
+            disableDarkMode();
+            localStorage.setItem("mode","light");
+        }
     });
 
     //Dark Mode Truchazo
@@ -53,8 +58,6 @@ document.addEventListener("DOMContentLoaded", function() {
         bodyTheme.classList.add("dark-mode-active");
         countdownAguinaldo.classList.add("bg-dark");
         countdownCobro.classList.add("bg-dark");
-        toggleThemeElement.classList.remove("bi-brightness-high-fill");
-        toggleThemeElement.classList.add("bi-moon-stars-fill");
     }
 
     function disableDarkMode(){
@@ -63,8 +66,6 @@ document.addEventListener("DOMContentLoaded", function() {
         bodyTheme.classList.remove("dark-mode-active");
         countdownAguinaldo.classList.remove("bg-dark");
         countdownCobro.classList.remove("bg-dark");
-        toggleThemeElement.classList.remove("bi-moon-stars-fill");
-        toggleThemeElement.classList.add("bi-brightness-high-fill");
     }
 });
 

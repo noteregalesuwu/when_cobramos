@@ -13,6 +13,10 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="styles.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <nav class="navbar navbar-expand-lg bg-custom-green">
     <div class="container-fluid">
@@ -159,6 +163,83 @@
             </script>
         </footer>
     </div>
+
+   
     
 </body>
+<h5 class="modal-title" style="display: none;" id="modal-mensaje">
+    <br/>
+    ¡Nos mudamos a una plataforma mejor gracias a nuestros auspiciantes!
+
+    Querida comunidad,
+    
+    Nos complace anunciar que hemos migrado a una nueva plataforma que promete mejorar significativamente tu experiencia con nosotros. Esta emocionante transición ha sido posible gracias al generoso apoyo de nuestros auspiciantes, quienes comparten nuestro compromiso con la excelencia y la innovación.
+    
+
+</h5>
+
+<div id="comunicado-modal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <section
+    style="display: flex;justify-content: center;"
+    >
+
+        <h2 style="font-family: Montserrat;">
+            AVISO IMPORTANTE!!! MIGRACIÓN DE PLATAFORMA
+        </h2>
+    </section>
+    
+    <h4 style="color:gray;">
+        ¿Qué cambios puedes esperar?
+        
+    </h4>
+    <section
+    style="display: flex;justify-content: center; width: 100%;"
+    >
+
+    <p style="color: gray; width: 70%;">
+        
+        
+        Mayor velocidad y fiabilidad: La nueva plataforma está diseñada para ofrecerte tiempos de carga más rápidos y una experiencia más fluida en general.
+        Funcionalidades mejoradas: Estamos introduciendo nuevas herramientas y funciones que te facilitarán la navegación y la interacción en nuestro sitio web.
+        Diseño optimizado: Hemos renovado nuestro diseño para que sea más intuitivo y accesible, adaptándonos mejor a tus necesidades.
+        Estamos muy emocionados por esta actualización y esperamos que tú también lo estés. Nos esforzamos continuamente por mejorar nuestros servicios y esta migración es un paso importante hacia adelante.
+        
+        ¡Gracias por tu apoyo continuo y por ser parte de nuestra comunidad! Sin ti, esto no sería posible.
+        
+    </p>
+</section>
+<section
+style="display: flex;justify-content: end;flex-direction: column;"
+>
+
+    <p style="color: black;">
+        Atentamente
+    </p>
+    <p style="color: black;">
+        Dr. Mykure / nutriaschambeadoras (©)
+    </p>
+</section>
+  </div>
+
+<script>
+var modal = document.getElementById("comunicado-modal");
+var span = document.getElementsByClassName("close")[0];
+
+  modal.style.display = "block";
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+  if (event.target == modal) 
+    modal.style.display = "none";
+  }
+
+</script>
+
+</div>
+
 </html>
